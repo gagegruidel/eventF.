@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Event Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Check if the user is logged in
+        if (!localStorage.getItem('loggedIn')) {
+            window.location.href = 'index.html'; // Redirect to login if not logged in
+        }
+    </script>
+</head>
+<body>
+    <h1>Local Event Finder</h1>
+    <input type="text" id="search" placeholder="Search events..." />
+    <label for="sort">Sort by:</label>
+<select id="sort">
+    <option value="date">Date</option>
+    <option value="name">Name</option>
+</select>
+    <div id="event-list"></div>
+    <h2>Add an Event</h2>
+    <form id="event-form">
+        <input type="text" id="event-name" placeholder="Event Name" required>
+        <input type="date" id="event-date" required>
+        <input type="text" id="event-location" placeholder="Location" required>
+        <select id="event-category" required>
+            <option value="">Select Category</option>
+            <option value="Music">Music</option>
+            <option value="Sports">Sports</option>
+            <option value="Arts">Arts</option>
+            <option value="Food">Food</option>
+        </select>
+        <textarea id="event-description" placeholder="Description" required></textarea>
+        <button type="submit">Add Event</button>
+        <h2>Event Locations</h2>
+<div id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAoCIdYWgSn_wahO0NSdtuCXycQTNT-qC8&callback=initMap" async defer></script>
+
+<script>
+    function logout() {
+        localStorage.removeItem('loggedIn'); // Clear the logged-in status
+        window.location.href = 'login.html'; // Redirect to login page
+    }
+</script>
+
+<a href="forum.html">Visit the Event Forum</a>
+<div id="user-count" style="text-align: center; margin: 20px;"></div>
